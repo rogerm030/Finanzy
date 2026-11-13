@@ -1,0 +1,21 @@
+### Maven & Spring Boot ###
+target/
+data/
+.mvn/wrapper/maven-wrapper.jar
+
+### Frontend Node / Vite ###
+frontend/node_modules/
+frontend/dist/
+
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+
+### Eclipse / VS Code / OS ###
+.classpath
+.project
+.settings
+.vscode/
+.DS_Store

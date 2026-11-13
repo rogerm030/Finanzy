@@ -1,0 +1,285 @@
+:root {
+  --primary: #6366f1;
+  --primary-rgb: 99, 102, 241;
+  --primary-hover: #4f46e5;
+  --primary-light: #e0e7ff;
+  --primary-soft: rgba(99, 102, 241, 0.14);
+  --primary-border: rgba(99, 102, 241, 0.35);
+  --primary-glow: rgba(99, 102, 241, 0.35);
+  --primary-contrast: #ffffff;
+
+  --bg-app: #090d16;
+  --bg-sidebar: #0f172a;
+  --bg-card: #1e293b;
+  --bg-elevated: #334155;
+  --border-color: rgba(255, 255, 255, 0.09);
+
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #app {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Reusable Layout & Card Classes */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0.95rem;
+    border-radius: 16px;
+  }
+}
+
+.card-hover:hover {
+  border-color: var(--primary-border);
+  box-shadow: 0 10px 28px -10px var(--primary-glow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  box-shadow: 0 4px 14px -2px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-ghost {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+.btn-ghost:hover {
+  border-color: var(--primary-border);
+  background: var(--primary-soft);
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.14);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+.btn-danger:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+.input, .select, .textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--bg-app);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.65rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Prevent iOS Safari auto-zoom on input focus (requires >=16px) */
+@media (max-width: 768px) {
+  .input, .select, .textarea {
+    font-size: 16px;
+    padding: 0.6rem 0.75rem;
+  }
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.01em;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.71rem;
+  font-weight: 600;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Modal Backdrop & Mobile Bottom Sheet */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 13, 22, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  max-height: 88dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.35rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 560px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-box {
+    border-radius: 22px 22px 0 0;
+    max-height: 92dvh;
+    padding: 1.15rem 1rem calc(1.25rem + var(--safe-bottom));
+  }
+}
+
+/* Progress Bar */
+.progress-track {
+  width: 100%;
+  height: 9px;
+  background: var(--bg-elevated);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+/* Responsive Layout */
+.app-shell {
+  display: grid;
+  grid-template-columns: 265px minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100vw;
+}
+
+@media (max-width: 960px) {
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--safe-top);
+    padding-bottom: calc(74px + var(--safe-bottom));
+  }
+  .desktop-sidebar {
+    display: none !important;
+  }
+}
+
+@media (min-width: 961px) {
+  .mobile-bottom-nav,
+  .mobile-top-status {
+    display: none !important;
+  }
+}
+
+@media print {
+  .desktop-sidebar, .mobile-bottom-nav, .mobile-top-status, .no-print {
+    display: none !important;
+  }
+  .app-shell {
+    display: block;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
